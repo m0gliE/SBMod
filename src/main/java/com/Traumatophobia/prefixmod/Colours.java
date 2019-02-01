@@ -25,8 +25,6 @@ public class Colours implements IClientCommand {
     { 
 		aliases = new ArrayList();
 		aliases.add("colour");
-		aliases.add("color");
-		aliases.add("colors");
 		
     } 
 	
@@ -85,3 +83,4 @@ public class Colours implements IClientCommand {
 	}
 
 }
+

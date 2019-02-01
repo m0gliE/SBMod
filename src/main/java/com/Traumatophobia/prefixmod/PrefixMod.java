@@ -90,55 +90,40 @@ public class PrefixMod {
 	{
 		ClientCommandHandler.instance.registerCommand(new ToggleNotify());
 		ClientCommandHandler.instance.registerCommand(new SetPrefix());
-		ClientCommandHandler.instance.registerCommand(new AutoAdvert());
-		ClientCommandHandler.instance.registerCommand(new AutoAdvertTime());
-		ClientCommandHandler.instance.registerCommand(new AutoSpawnMob());
-		ClientCommandHandler.instance.registerCommand(new AutoFix());
-		ClientCommandHandler.instance.registerCommand(new AutoPrivate());
-		ClientCommandHandler.instance.registerCommand(new AutoLotBuy());
-		ClientCommandHandler.instance.registerCommand(new Afk());
-		ClientCommandHandler.instance.registerCommand(new Colours());
-		ClientCommandHandler.instance.registerCommand(new EnchantAll());
+		ClientCommandHandler.instance.registerCommand(new ToggleLottery());
+		ClientCommandHandler.instance.registerCommand(new ToggleVote());
+		ClientCommandHandler.instance.registerCommand(new ToggleTips());
+		ClientCommandHandler.instance.registerCommand(new ToggleAll());
 		ClientCommandHandler.instance.registerCommand(new ExtraNotify());
+		ClientCommandHandler.instance.registerCommand(new Colours());
 		ClientCommandHandler.instance.registerCommand(new RemoveNotify());
+		ClientCommandHandler.instance.registerCommand(new Help());
+		ClientCommandHandler.instance.registerCommand(new AutoAdvert());
+		ClientCommandHandler.instance.registerCommand(new AutoFix());
+		
+		ClientCommandHandler.instance.registerCommand(new AutoAdvertTime());
 		ClientCommandHandler.instance.registerCommand(new JoinCommands());
+		ClientCommandHandler.instance.registerCommand(new SetSuffix());
+		ClientCommandHandler.instance.registerCommand(new ToggleShop());
 		ClientCommandHandler.instance.registerCommand(new noticeclag());
 		ClientCommandHandler.instance.registerCommand(new TestCommand());
 		ClientCommandHandler.instance.registerCommand(new ToggleAdvancement());
-		ClientCommandHandler.instance.registerCommand(new ToggleAfk());
 		ClientCommandHandler.instance.registerCommand(new ToggleBans());
 		ClientCommandHandler.instance.registerCommand(new ToggleGround());
-		ClientCommandHandler.instance.registerCommand(new ToggleJoins());
-		ClientCommandHandler.instance.registerCommand(new ToggleLottery());
 		ClientCommandHandler.instance.registerCommand(new ToggleLucky());
-		ClientCommandHandler.instance.registerCommand(new ToggleMobarena());
 		ClientCommandHandler.instance.registerCommand(new ToggleRarecrate());
-		ClientCommandHandler.instance.registerCommand(new ToggleShop());
 		ClientCommandHandler.instance.registerCommand(new ToggleSkychat());
-		ClientCommandHandler.instance.registerCommand(new ToggleSpawned());
-		ClientCommandHandler.instance.registerCommand(new ToggleTips());
-		ClientCommandHandler.instance.registerCommand(new ToggleVote());
+		ClientCommandHandler.instance.registerCommand(new Afk());
+		ClientCommandHandler.instance.registerCommand(new ToggleAfk());
+		ClientCommandHandler.instance.registerCommand(new AutoPrivate());
 		ClientCommandHandler.instance.registerCommand(new ToggleWelcome());
-		ClientCommandHandler.instance.registerCommand(new ToggleAll());
-		ClientCommandHandler.instance.registerCommand(new SetSuffix());
-		ClientCommandHandler.instance.registerCommand(new Help());
+		ClientCommandHandler.instance.registerCommand(new AutoLotBuy());
 	}
 	
 	public static int pressTime = 0;
 	public static int spawnTime = 0;
 	public static int advertTimer = 0;
-	public static boolean enchantsword = false;
 	public static boolean playsound = false;
-	public static boolean enchanttool = false;
-	public static boolean enchanttorso = false;
-	public static boolean enchantbow = false;
-	public static boolean enchanthelmet = false;
-	public static boolean enchantboots = false;
-	public static boolean enchantrod = false;
-	public static boolean enchantother = false;
-	public static boolean enchantaxe = false;
-	public static boolean enchant = false;
-	public static boolean spawnmobs = false;
 	public static boolean autofix = false;
 	public static boolean autobuy = false;
 	public static boolean autoprivate = false;
@@ -235,7 +220,7 @@ public class PrefixMod {
 
 				case "\n": robot.keyPress(KeyEvent.VK_ENTER); robot.keyRelease(KeyEvent.VK_ENTER); break;
 				
-				case "Â¬": robot.keyPress(KeyEvent.VK_ESCAPE); robot.keyRelease(KeyEvent.VK_ESCAPE); break;
+				case "¬": robot.keyPress(KeyEvent.VK_ESCAPE); robot.keyRelease(KeyEvent.VK_ESCAPE); break;
 				}
 				
 			} catch (Exception e) {
@@ -253,39 +238,20 @@ public class PrefixMod {
 		nicks = new ArrayList<String>();
 		commands = new ArrayList<String>();
 		loggedon = false;
-		enchantsword = false;
 		playsound = false;
-		enchanttool = false;
-		enchanttorso = false;
-		enchantbow = false;
-		enchanthelmet = false;
-		enchantboots = false;
-		enchantrod = false;
-		enchantother = false;
-		enchantaxe = false;
-		enchant = false;
-		spawnmobs = false;
 		autofix = false;
 		sendwelcome = false;
 		isgod = true;
 		isfly = true;
 		turnon = false;
-		ToggleAdvancement.Toggled = false;
-		ToggleBans.Toggled = false;
-		ToggleGround.Toggled = false;
-		ToggleJoins.Toggled = false;
-		ToggleLucky.Toggled = false;
-		ToggleMobarena.Toggled = false;
-		ToggleRarecrate.Toggled = false;
-		ToggleSkychat.Toggled = false;
-		ToggleSpawned.Toggled = false;
-		ToggleShop.Toggled = false;
-		ToggleTips.Toggled = false;
 		ToggleVote.Toggled = false;
 		ToggleWelcome.Toggled = false;
+		ToggleTips.Toggled = false;
+		ToggleShop.Toggled = false;
 		toggled = false;
 		ToggleLottery.Toggled = false;
 		ToggleAll.Toggled = false;
+		
 	}
 	
 	
@@ -379,7 +345,7 @@ public class PrefixMod {
 		try {
 		if (
 				percent
-				< 60
+				< 30
 				&& autofix && item.isItemStackDamageable()
 				&& cooldown == false) {
 			Minecraft.getMinecraft().player.sendChatMessage("/fix all");
@@ -409,7 +375,7 @@ public class PrefixMod {
 			}
 		}
 		if (cooldown) {
-			if (cooldowncounter >= 200) {
+			if (cooldowncounter >= 400) {
 				cooldown = false;
 				cooldowncounter = 0;
 			}
@@ -433,8 +399,9 @@ public class PrefixMod {
 			}
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString(boarder));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString(""));
-			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("Skyblock Mod 1.7"));
+			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("Economy Mod 1.7"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("Type /thelp for a list of commands."));
+			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("commands!"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString(""));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString(boarder));
 			
@@ -454,249 +421,7 @@ public class PrefixMod {
 			if (sendwelcome) {
 				welcomemessage ++;
 			}
-			
-		}
-		try {
-			if (pressTime == 0 && enchantaxe) {
-				Minecraft.getMinecraft().player.sendChatMessage("/enchant sharpness 5");
-			}
-			else if (pressTime == 40 && enchantaxe) {
-				Minecraft.getMinecraft().player.sendChatMessage("/enchant smite 5");
-			}
-			else if (pressTime == 80 && enchantaxe) {
-				Minecraft.getMinecraft().player.sendChatMessage("/enchant baneofarthropods 5");
-			}
-			else if (pressTime == 120 && enchantaxe) {
-				Minecraft.getMinecraft().player.sendChatMessage("/enchant efficiency 5");
-			}
-			else if (pressTime == 160 && enchantaxe) {
-				Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-			}
-			else if (pressTime == 200 && enchantaxe) {
-				Minecraft.getMinecraft().player.sendChatMessage("/enchant fortune 3");
-			}
-			else if (pressTime == 240 && enchantaxe) {
-				Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-				enchantaxe = false;
-				enchant = false;
-			}
-		
-		if (pressTime == 0 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant sharpness 5");
-		}
-		else if (pressTime == 40 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant smite 5");
-		}
-		else if (pressTime == 80 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant baneofarthropods 5");
-		}
-		else if (pressTime == 120 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant fireaspect 2");
-		}
-		else if (pressTime == 160 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant looting 3");
-		}
-		else if (pressTime == 200 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant knockback 2");
-		}
-		else if (pressTime == 240 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant sweepingedge 3");
-		}
-		else if (pressTime == 280 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-		}
-		else if (pressTime == 320 && enchantsword) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-			enchantsword = false;
-			enchant = false;
-		}
-		if (pressTime == 0 && enchanttool) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant efficiency 5");
-		}
-		else if (pressTime == 40 && enchanttool) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking  3");
-		}
-		else if (pressTime == 80 && enchanttool) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-		}
-		else if (pressTime == 120 && enchanttool) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant fortune 3");
-			enchanttool = false;
-			enchant = false;
-		}
-		if (pressTime == 0 && enchanttorso) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant protection 4");
-		}
-		else if (pressTime == 40 && enchanttorso) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant fireprotection 4");
-		}
-		else if (pressTime == 80 && enchanttorso) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant blastprotection 4");
-		}
-		else if (pressTime == 120 && enchanttorso) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant projectileprotection 4");
-		}
-		else if (pressTime == 160 && enchanttorso) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-		}
-		else if (pressTime == 200 && enchanttorso) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant thorns 3");
-		}
-		else if (pressTime == 240 && enchanttorso) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-			enchanttorso = false;
-			enchant = false;
-		}
-
-		if (pressTime == 0 && enchantbow) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant power 5");
-		}
-		else if (pressTime == 40 && enchantbow) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant punch 2");
-		}
-		else if (pressTime == 80 && enchantbow) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-		}
-		else if (pressTime == 120 && enchantbow) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant flame 1");
-		}
-		else if (pressTime == 160 && enchantbow) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-		}
-		else if (pressTime == 200 && enchantbow) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant infinity 1");
-			enchantbow = false;
-			enchant = false;
-		}
-		
-		if (pressTime == 0 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant protection 4");
-		}
-		else if (pressTime == 40 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant fireprotection 4");
-		}
-		else if (pressTime == 80 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant blastprotection 4");
-		}
-		else if (pressTime == 120 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant projectileprotection 4");
-		}
-		else if (pressTime == 160 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-		}
-		else if (pressTime == 200 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant thorns 3");
-		}
-		else if (pressTime == 240 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-		}
-		else if (pressTime == 280 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant respiration 3");
-		}
-		else if (pressTime == 320 && enchanthelmet) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant aquaaffinity 1");
-			enchanthelmet = false;
-			enchant = false;
-		}
-		if (pressTime == 0 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant protection 4");
-		}
-		else if (pressTime == 40 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant fireprotection 4");
-		}
-		else if (pressTime == 80 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant blastprotection 4");
-		}
-		else if (pressTime == 120 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant projectileprotection 4");
-		}
-		else if (pressTime == 160 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-		}
-		else if (pressTime == 200 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant thorns 3");
-		}
-		else if (pressTime == 240 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-		}
-		else if (pressTime == 280 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant depth_strider 3");
-		}
-		else if (pressTime == 320 && enchantboots) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant featherfalling 4");
-			enchantboots = false;
-			enchant = false;
-		}
-		if (pressTime == 0 && enchantrod) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant lure 3");
-		}
-		else if (pressTime == 40 && enchantrod) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant luck 3");
-		}
-		else if (pressTime == 80 && enchantrod) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-		}
-		else if (pressTime == 120 && enchantrod) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-			enchantrod = false;
-			enchant = false;
-		}
-		if (pressTime == 0 && enchantother) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant unbreaking 3");
-		}
-		else if (pressTime == 40 && enchantother) {
-			Minecraft.getMinecraft().player.sendChatMessage("/enchant mending 1");
-			enchantother = false;
-			enchant = false;
-		}
-		
-		if (enchant) {
-			pressTime++;
-		}
-		}
-		catch (Exception e) {
-			;
-		}
-		
-		
-		try {
-			if (spawnmobs) {
-				if (spawnTime >= 1500) {
-					Minecraft.getMinecraft().player.sendChatMessage(AutoSpawnMob.command);
-					spawnTime = 0;
-				}
-				spawnTime++;
-			}
-		} catch (Exception e) {
-			;
-		}
-		try {
-			if (AutoSpawnMob.rainbow) {
-				if (spawnTime >= 1500) {
-					Minecraft.getMinecraft().player.sendChatMessage("/spawnmob sheep:"+colours.get(index)+" "+AutoSpawnMob.number+" "+AutoSpawnMob.player);
-					index += 1;
-					spawnTime = 0;
-				}
-				spawnTime ++;
-			}
-		} catch (Exception e) {
-			index = 0;
-
-		}
-		try {
-			if (AutoSpawnMob.all) {
-				if (spawnTime >= 1500) {
-					Minecraft.getMinecraft().player.sendChatMessage("/spawnmob "+mobs.get(index)+" "+AutoSpawnMob.number+" "+AutoSpawnMob.player);
-					index += 1;
-					spawnTime = 0;
-				}
-				spawnTime ++;
-			}
-		} catch (Exception e) {
-			index = 0;
-
-		}
-		
+	 	}
 	}
 	boolean isdonor50 = false;
 	@SubscribeEvent
@@ -714,7 +439,6 @@ public class PrefixMod {
 		else {
 			event.setMessage(SetPrefix.ChatPrefix+event.getMessage()+SetSuffix.ChatPrefix);
 		}
-
 	}
 	
 	public static List<String> nicks = new ArrayList<String>();
@@ -786,16 +510,12 @@ public class PrefixMod {
 	    }
 	    
 	    if (message2.startsWith("WARNING") && message2.contains("seconds") && noticeclag.Toggled) {
-	    	Minecraft.getMinecraft().ingameGUI.displayTitle(TextFormatting.BOLD+""+TextFormatting.RED+"Items"+TextFormatting.RESET+" clear in "+splitmessage2[7], "", 0, 0, 0);
-	    }
-	    
-	    if (message2.contains("[SkyblockBans]") && message2.startsWith("[S") && ToggleBans.Toggled) {
-	    	event.setCanceled(true);
+	    	Minecraft.getMinecraft().ingameGUI.displayTitle(TextFormatting.BOLD+""+TextFormatting.RED+"Items"+TextFormatting.RESET+" removed in "+splitmessage2[7], "", 0, 0, 0);
 	    }
 
-	    if (message2.contains("Welcome to Skyblock!") && message2.startsWith("Welcome") && ToggleJoins.Toggled) {
+		if (message2.contains("[SkyblockBans]") && message2.startsWith("[S") && ToggleBans.Toggled) {
 	    	event.setCanceled(true);
-	    }
+	    }	    
 
 	    if (message2.contains("Has made the advancement") && ToggleAdvancement.Toggled) {
 	    	event.setCanceled(true);
@@ -805,19 +525,15 @@ public class PrefixMod {
 	    	event.setCanceled(true);
 	    }
 
-	    if (message2.contains("[MobArena]") && message2.startsWith("[M") && ToggleMobarena.Toggled) {
-	    	event.setCanceled(true);
-	    }
-
 	    if (message2.startsWith("WARNING") && message2.contains("Ground items will be removed in") && ToggleGround.Toggled) {
 	    	event.setCanceled(true);
 	    }
-	    
-	    if (message2.contains("[SBLottery] Cong") && autobuy) {
+
+	    if (message2.contains("[SBLotto] Cong") && autobuy) {
 	    	Minecraft.getMinecraft().player.sendChatMessage("/lot buy 2");
 	    }
 	    
-	    if (message2.contains("[SBLottery]") && message2.startsWith("[S") && ToggleLottery.Toggled) {
+	    if (message2.contains("[SBLotto]") && message2.startsWith("[S") && ToggleLottery.Toggled) {
 	    	event.setCanceled(true);
 	    }
 	    
@@ -833,14 +549,10 @@ public class PrefixMod {
 	    	event.setCanceled(true);
 	    }
 	    
-	    if (ToggleLucky.Toggled && 
-	    		(!splitmessage2[0].endsWith("from voting!") && (message2.contains("was super lucky and received") || message2.contains("was lucky and received"))) ||
-	    		message2.contains("was super duper lucky and received")
+	    if (ToggleShop.Toggled && 
+	    		(!splitmessage2[0].endsWith(":") && (message2.contains("bartered") || message2.contains("shop") || message2.contains("bought"))) ||
+	    		message2.startsWith("[Shop]")
 	    		) {
-	    	event.setCanceled(true);
-	    }
-
-	    if (message2.contains("[Skyblock]") && message2.startsWith("[S") && ToggleTips.Toggled) {
 	    	event.setCanceled(true);
 	    }
 
@@ -848,21 +560,13 @@ public class PrefixMod {
 	    	event.setCanceled(true);
 	    }
 
-	    if (ToggleShop.Toggled && 
-	    		(!splitmessage2[0].endsWith(":") && (message2.contains("bartered") || message2.contains("shop") || message2.contains("bought"))) ||
-	    		message2.startsWith("[Shop]")
+	    if (ToggleLucky.Toggled && 
+	    		(!splitmessage2[0].endsWith("from voting!") && (message2.contains("was super lucky and received") || message2.contains("was lucky and received"))) ||
+	    		message2.contains("was super duper lucky and received")
 	    		) {
 	    	event.setCanceled(true);
 	    }
 	    
-	    if (ToggleSpawned.Toggled && 
-	    		(!splitmessage2[0].endsWith("Mob quantity limited to server limit.") && (message2.endsWith("rabbits spawned") || message2.endsWith("cows spawned")) ||
-	    		message2.endsWith("sheep spawned") && (message2.endsWith("mushroomcows spawned")) || message2.endsWith("ocelots spawned")) ||
-					message2.endsWith("parrots spawned") && (message2.endsWith("pigs spawned") && message2.endsWith("chickens spawned"))
-	    		) {
-	    	event.setCanceled(true);
-	    }
-
 	    try {
 	    	if (splitmessage2[3].contains("vote.skyblock.net") && ToggleVote.Toggled) {
 	    		event.setCanceled(true);
@@ -872,6 +576,9 @@ public class PrefixMod {
 	    	;
 	    }
 	    
+	    if (message2.contains("[Skyblock]") && message2.startsWith("[S") && ToggleTips.Toggled) {
+	    	event.setCanceled(true);
+	    }
 	    for (int i = 0; i < splitmessage.length; i++) {
 	    	boolean include = true;
 	    	if ((splitmessage[i].startsWith("<") && splitmessage[i].endsWith(">")) || splitmessage[i].endsWith(":") || splitmessage[i].endsWith("]")) {
@@ -882,7 +589,7 @@ public class PrefixMod {
 	    	try {
 	    	if (splitmessage2[i].toLowerCase().contains(nicks.get(j).toLowerCase()) && include) {
 	    		String lowermessage = splitmessage[i].toLowerCase();
-	    		splitmessage[i] = (lowermessage.replace(nicks.get(j).toLowerCase(),"Â§e"+nicks.get(j)+"Â§r"));
+	    		splitmessage[i] = (lowermessage.replace(nicks.get(j).toLowerCase(),"§e"+nicks.get(j)+"§r"));
 	    		changechat = true;
 	    		playsound = true;
 	    	}
@@ -897,7 +604,7 @@ public class PrefixMod {
 
 	    if (changechat && !toggled) {
 	    	
-	    	String[] splitformat = newstring.split("Â§");
+	    	String[] splitformat = newstring.split("§");
 	    	newstring = "";
 	    	for (int i = 0; i < splitformat.length; i++) {
 	    		if (splitformat[i].startsWith("a")) {
@@ -1009,3 +716,6 @@ public class PrefixMod {
 	}
 	
 }
+
+
+	

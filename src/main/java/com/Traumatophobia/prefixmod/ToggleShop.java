@@ -23,6 +23,7 @@ public class ToggleShop implements IClientCommand {
 		aliases = new ArrayList();
 		aliases.add("ts");
 		aliases.add("tshop");
+		aliases.add("toggleshop");
 		
     } 
 	
