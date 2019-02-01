@@ -40,7 +40,7 @@ public class AutoAdvertTime implements IClientCommand {
 	public void execute(MinecraftServer arg0, ICommandSender arg1, String[] arg2) throws CommandException {
 		if (arg2.length == 0) {
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("Timer reset to default"));
-			time = 2000;
+			time = 5000;
 		}
 		else if (arg2.length > 1) {
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("Please do /autoadverttime [time]"));
