@@ -83,7 +83,6 @@ public class Help implements IClientCommand {
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString(boarder));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString(TextFormatting.BOLD+"Elite+ commands"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/autofix - Automatically fixes when durability falls below 20%"));
-			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/toggleadvancement - removes 'Has made the advancement' from chat"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/toggleskychat - removes '[Skychat] hover game' from chat"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/toggleadvancement - removes 'Has made the advancement' from chat"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/toggleground - removes 'Ground items will be removed in' from chat "));
