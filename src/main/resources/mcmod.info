@@ -1,14 +1,14 @@
 [
 {
   "modid": "tsb",
-  "name": "Skyblock Mod",
+  "name": "Skyblock And Economy Mod",
   "description": "A mod designed for skyblock.net",
-  "version": "0.1",
+  "version": "2.0",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/Traumatophobia/SBMod",
   "updateUrl": "",
   "authorList": ["Traumatophobia"],
-  "credits": "",
+  "credits": "m0gliEz",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
