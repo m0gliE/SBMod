@@ -1,3 +1,7 @@
+This is the forge utility mod for skyblock.net
+
+Current version on / Master / 2.0 
+
 To compile this mod:
 
 1: Use your favorite IDE like Eclipse or NetBeans.
@@ -15,6 +19,8 @@ To compile this mod:
 7: A compiled jar file will be in your build folder. 
 
 Have Fun!
+
+https://skyblock.net/threads/skyblock-mod-for-forge.130946/
 
 Resources
 
