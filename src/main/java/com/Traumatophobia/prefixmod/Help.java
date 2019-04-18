@@ -68,7 +68,7 @@ public class Help implements IClientCommand {
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/autoadverttime [time] - sets the time between auto adverts"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/autoprivate [Line2] [Line3] - Automatically writes private signs"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/colors - shows all formatting colors"));
-			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/clag - displays clearLag notification countdown onscreen as an overlay "));
+			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/noticeclag - displays clearLag notification countdown onscreen as an overlay "));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("/joincommand - Adds commands to be used when you log in"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString("do /thelp 3 for next page"));
 			Minecraft.getMinecraft().player.sendMessage(new TextComponentString(boarder));
