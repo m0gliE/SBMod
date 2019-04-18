@@ -23,6 +23,7 @@ public class noticeclag implements IClientCommand {
     { 
 		aliases = new ArrayList();
 		aliases.add("nc");
+		aliases.add("/tclag");
     } 
 	
 
